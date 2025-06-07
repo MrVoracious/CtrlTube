@@ -1,0 +1,27 @@
+{
+  "name": "CtrlTube",
+  "version": "0.3.4",
+  "description": "A way to direct you to the good",
+  "permissions": ["storage", "tabs", "activeTab", "scripting", "storage"],
+  "host_permissions": ["https://*.youtube.com/*"],
+  "background":{
+    "service_worker" : "service_worker.js"
+  },
+  "content_scripts": [
+  {
+    "matches": ["https://*.youtube.com/shorts/*"],
+    "js": ["shortsRickRoll.js"]
+  },
+  {
+    "matches": ["https://*.youtube.com/*"],
+    "exclude_matches": ["https://*.youtube.com/shorts/*"],
+    "js": ["workIt.js"]
+  }
+],
+  "action":{
+    "default_icon": {},
+    "default_title": "CtrlTube",
+    "default_popup": "index.html"
+  },
+  "manifest_version" : 3
+}
