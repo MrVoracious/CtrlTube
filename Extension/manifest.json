@@ -1,8 +1,8 @@
 {
   "name": "CtrlTube",
-  "version": "0.4.50" ,
+  "version": "0.4.131" ,
   "description": "A way to direct you to the good",
-  "permissions": ["storage", "tabs", "activeTab", "scripting", "storage"],
+  "permissions": ["storage", "tabs", "activeTab", "scripting"],
   "host_permissions": ["https://*.youtube.com/*", "http://localhost:8080/*"],
   "background":{
     "service_worker" : "service_worker.js"
@@ -16,10 +16,11 @@
   ],
   "web_accessible_resources": [
   {
-    "resources": ["inject.css"],
+    "resources": ["inject.css", "index.js"],
     "matches": ["https://*.youtube.com/*"]
   }
 ],
+
   "action":{
     "default_icon": "icon.png",
     "default_title": "CtrlTube",

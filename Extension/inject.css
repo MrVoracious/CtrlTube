@@ -1,17 +1,5 @@
-.rewardedVideo {
-    transform: scale(0.9);
-    position: relative;
-    background: #0F0F0F !important;
-}
-
-.rewardedVideo::after{
-    position: absolute;
-    content: " ";
-    width: 100%;
-    height: 100%;
-    background: blue;
-    top: 0;
-    left: 0;
-    z-index: -20;
-    transform: scale(1.1111);
-}
+/* body{
+    max-width: 100vw !important;
+    max-height: 100vh !important;
+    overflow: hidden !important;
+} */
