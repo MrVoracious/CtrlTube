@@ -1,9 +1,9 @@
 {
   "name": "CtrlTube",
-  "version": "0.4.131" ,
-  "description": "A way to direct you to the good",
+  "version": "0.6.0" ,
+  "description": "Fix your algorithm, smartly",
   "permissions": ["storage", "tabs", "activeTab", "scripting"],
-  "host_permissions": ["https://*.youtube.com/*", "http://localhost:8080/*"],
+  "host_permissions": ["https://*.youtube.com/*"],
   "background":{
     "service_worker" : "service_worker.js"
   },
@@ -11,7 +11,8 @@
     {
       "matches": ["https://*.youtube.com/*"],
       "js": ["workIt.js"],
-      "type": "module"
+      "type": "module",
+      "run_at": "document_idle"
     }
   ],
   "web_accessible_resources": [

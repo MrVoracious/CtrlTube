@@ -1,5 +1,44 @@
-/* body{
-    max-width: 100vw !important;
-    max-height: 100vh !important;
-    overflow: hidden !important;
-} */
+.ytBox{
+    height: 350px;
+    width: 450px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: center;
+    overflow: hidden;
+    margin: 0 10px;
+    cursor: pointer;
+}
+
+.thumbnail{
+    width: 100%;
+    height: 72.5%;
+    margin-bottom: 2.5%;
+}
+
+.details{
+    width: 100%;
+    flex: 1;
+    box-sizing: border-box;
+    padding: 0.5vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: start;
+}
+
+.title{
+    color: white;
+    font-size: 1.6rem;
+}
+
+.tags{
+    font-size: 1.4rem;
+    color: #AAAAAA;
+}
+
+.thumbnail > img{
+    width: 100%;
+    height: auto;
+}

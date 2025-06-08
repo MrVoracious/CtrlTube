@@ -41,27 +41,38 @@ chrome.tabs.query({
 
 let interval = null;
 let resting = false;
-let currentTime = "09:00";
+chrome.storage.local.get(["resting"], (result) => {
+    console.log(result);
+    resting = result.resting
+})
+let currentTime = "00:30";
 
 chrome.runtime.onMessage.addListener((msg, sender, sendResponse) => {
   if (msg.type === "START_BREAK") {
-    resting = true;
-    currentTime = msg.payload || "09:00";
+    console.log("Service worker logged start")
+    // resting = true;
+    chrome.storage.local.set({ resting: true }, () => { });
+    currentTime = msg.payload || "00:30";
     startTimer();
     sendResponse({ status: "started" });
     return true;
   }
 
   if (msg.type === "STOP_BREAK") {
-    resting = false;
+    console.log("Service worker logged stop")
+    // resting = false;
+    chrome.storage.local.set({ resting: false }, () => { });
     clearTimeout(interval);
     sendResponse({ status: "stopped" });
     return true;
   }
 
   if (msg.type === "GET_TIME") {
-    sendResponse({ time: currentTime, resting });
-    return true;
+    chrome.storage.local.get(["resting"], (result) => {
+      sendResponse({ time: currentTime, resting });
+      console.log("Service worker logged time request ", currentTime, result.resting)
+      return true;
+    })
   }
 });
 
@@ -72,19 +83,48 @@ function subtractOneSecond(timeStr) {
   totalSeconds -= 1;
   return `${String(Math.floor(totalSeconds / 60)).padStart(2, '0')}:${String(totalSeconds % 60).padStart(2, '0')}`;
 }
+function addOneSecond(timeStr) {
+  const [minutes, seconds] = timeStr.split(':').map(Number);
+  let totalSeconds = minutes * 60 + seconds;
+  totalSeconds += 1;
+  return `${String(Math.floor(totalSeconds / 60)).padStart(2, '0')}:${String(totalSeconds % 60).padStart(2, '0')}`;
+}
+
 
 function startTimer() {
-  if (!resting) return;
+  chrome.storage.local.get(["resting"], (result) => { if (!result.resting) return; })
 
   interval = setTimeout(() => {
     currentTime = subtractOneSecond(currentTime);
     console.log("Timer:", currentTime);
     chrome.storage.local.set({ points: currentTime });
 
-    if (currentTime !== "00:00") {
+    if (currentTime != "00:00") {
       startTimer();
     } else {
-      resting = false;
+      // resting = false;
+      chrome.storage.local.set({ resting: false }, () => { });
+      chrome.tabs.query({}, (tabs) => {
+        const youtubeTab = tabs.find(tab => tab.active && tab.url?.includes("youtube.com"));
+
+        if (youtubeTab) {
+          chrome.scripting.executeScript(
+            {
+              target: { tabId: youtubeTab.id },
+              func: () => {
+                window.location.href = "https://www.youtube.com/";
+              },
+            },
+            (results) => {
+              if (chrome.runtime.lastError) {
+                console.error("Injection failed:", chrome.runtime.lastError.message);
+              } else {
+                console.log("Redirect injected");
+              }
+            }
+          );
+        }
+      });
     }
   }, 1000);
 }

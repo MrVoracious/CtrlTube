@@ -16,33 +16,48 @@ chrome.storage.local.get(["points"], (result) => {
     if (result.points) {
         document.querySelector('#pointsTime').textContent = result.points;
     } else {
-        document.querySelector('#pointsTime').textContent = "09:00";
+        document.querySelector('#pointsTime').textContent = "00:30";
     }
 });
+
+chrome.storage.local.set({ points: "10:00" });
 
 // use points
 const time = document.getElementById("pointsTime")
 const usePoints = document.getElementById("usePoints")
-let resting = false
 
-chrome.runtime.sendMessage({ type: "GET_TIME" }, ({ resting }) => {
-    if (resting) {
+let resting;
+chrome.storage.local.get(["resting"], (result) => {
+    resting = result.resting
+})
+
+
+
+
+chrome.storage.local.get(["resting"], (result) => {
+    if (result.resting) {
         usePoints.textContent = "End Break";
     } else {
         usePoints.textContent = "Use Points";
     }
 })
+
+
 usePoints.addEventListener('click', function () {
-    chrome.runtime.sendMessage({ type: "GET_TIME" }, ({ resting }) => {
-        if (!resting) {
-            chrome.runtime.sendMessage({ type: "START_BREAK", payload: time.textContent }, () => {
-                usePoints.textContent = "End Break";
-            });
-        } else {
-            chrome.runtime.sendMessage({ type: "STOP_BREAK" }, () => {
-                usePoints.textContent = "Use Points";
-            });
-        }
+    chrome.tabs.query({ active: true, currentWindow: true }, (tabs) => {
+        chrome.storage.local.get(["resting"], (result) => {
+            if (!result.resting) {
+                chrome.tabs.sendMessage(tabs[0].id, { type: "START_BREAK"});
+                chrome.runtime.sendMessage({ type: "START_BREAK", payload: time.textContent }, () => {
+                    usePoints.textContent = "End Break";
+                });
+            } else {
+                chrome.tabs.sendMessage(tabs[0].id, { type: "STOP_BREAK" });
+                chrome.runtime.sendMessage({ type: "STOP_BREAK" }, () => {
+                    usePoints.textContent = "Use Points";
+                });
+            }
+        })
     });
 });
 
