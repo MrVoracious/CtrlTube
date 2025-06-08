@@ -9,7 +9,7 @@ chrome.storage.local.get(["aboutMe"], (result) => {
     if (result.aboutMe) {
         document.querySelector('textarea').value = result.aboutMe;
     } else {
-        document.querySelector('textarea').value = "Enter something to get started...";
+        document.querySelector('textarea').value = "A student looking for educational content to grow their skills...";
     }
 });
 chrome.storage.local.get(["points"], (result) => {
