@@ -14,6 +14,12 @@
       "type": "module"
     }
   ],
+  "web_accessible_resources": [
+  {
+    "resources": ["inject.css"],
+    "matches": ["https://*.youtube.com/*"]
+  }
+],
   "action":{
     "default_icon": "icon.png",
     "default_title": "CtrlTube",

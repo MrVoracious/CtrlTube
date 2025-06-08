@@ -16,6 +16,7 @@ app.post('/proxy/generate', async (req, res) => {
 
     const data = await ollamaRes.json();
     res.json(data);
+    console.log(data);
   } catch (err) {
     console.error('Proxy error:', err.message);
     res.status(500).json({ error: 'Proxy failed' });

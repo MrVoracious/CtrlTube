@@ -52,9 +52,9 @@ async function getTitles() {
         elements = document.getElementById("contents").querySelectorAll("ytd-rich-item-renderer")
         console.log("loop: ", loop)
         loop = loop+1;
-        let result =  await apiCall(`Give me an array that displays for each element in this array: ${titles} whether a video titled like the element would be educational for a class 12th CBSE Commerce stream student. Only give true/false with no explanation. Return to me just the array with no supporting text and no code blocks`);
+        // let result =  await apiCall(`Give me an array that displays for each element in this array: ${titles} whether a video titled like the element would be educational for a class 12th CBSE Commerce stream student. Only give true/false with no explanation. Return to me just the array with no supporting text and no code blocks`);
         for(let i = 0; i < elements.length; i++){
-            if(result[i]){
+            if(Math.random() > 0.5){
                 await elements[i].remove();
                 console.log("removed ", titles[i])
             }
@@ -100,3 +100,10 @@ async function apiCall(prompt){
     });
 }
 
+const cssURL = chrome.runtime.getURL("inject.css");
+
+const link = document.createElement("link");
+link.rel = "stylesheet";
+link.href = cssURL;
+
+document.head.appendChild(link);
