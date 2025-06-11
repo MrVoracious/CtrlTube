@@ -28,6 +28,14 @@ CtrlTube is a Chrome extension that helps learners stay focused on educational c
 
 ---
 
+## 🏆 Achievements
+
+🏅 **Winner - Best Educational Hack at KT HACK 2025**  
+CtrlTube impressed judges with its simple idea and big impact — reimagining YouTube as a distraction-free study zone.
+***See the win page: [Devpost](https://devpost.com/software/ctrltube)***
+
+---
+
 ## 🧩 Installation
 
 1. Clone or download this repository:
@@ -68,21 +76,13 @@ CtrlTube evaluates YouTube thumbnails, titles, and metadata using predefined rul
 ```
 CtrlTube/
 │
-├── images/              # Screenshots and icons
-├── popup.html           # Extension popup
-├── content.js           # Page logic
-├── service_worker.js    # Background service worker
-├── manifest.json        # Extension config
-└── styles.css           # Optional styling
+├── extension/           # main folder
+├──├── popup.html           # Extension popup
+├──├── content.js           # Page logic
+├──├── service_worker.js    # Background service worker
+├──├── manifest.json        # Extension config
+└──├── styles.css           # Optional styling
 ```
-
----
-
-## 🏆 Achievements
-
-🏅 **Winner - Best Educational Hack at KT HACK 2025**  
-CtrlTube impressed judges with its simple idea and big impact — reimagining YouTube as a distraction-free study zone.
-
 ---
 
 ## 🤝 Contributing
@@ -108,7 +108,7 @@ Pull requests are welcome! To contribute:
 
 ## 📄 License
 
-MIT License.  
+CC by NC.  
 Feel free to use, modify, and distribute under the terms of the license.
 
 ---
