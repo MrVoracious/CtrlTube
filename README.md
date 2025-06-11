@@ -1,7 +1,7 @@
 # CtrlTube
 
 ![logo](https://u.cubeupload.com/tech/Thumbnail2.png)
-Because all content is not meant to be seen.
+Because Not All Content Deserves Attention
 
 CtrlTube is a chrome extension to help you focus your youtube experience and turn youtube into the ultimate productivity and education tool. 
 
