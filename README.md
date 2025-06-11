@@ -4,7 +4,7 @@
 
 CtrlTube is a Chrome extension that helps learners stay focused on educational content by automatically filtering out non-educational YouTube videos. No more rabbit holes — just pure productivity.
 
-![CtrlTube Banner](images/banner.png) <!-- Add your image path -->
+![CtrlTube Banner](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/465/627/datas/gallery.jpg) <!-- Add your image path -->
 
 ---
 
@@ -22,9 +22,9 @@ CtrlTube is a Chrome extension that helps learners stay focused on educational c
 
 > _Screenshots of the extension in action_
 
-| Before | After |
-|--------|-------|
-| ![Before](images/before.png) | ![After](images/after.png) |
+| Before | After | UI |
+|--------|-------|-------|
+| ![Before](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/466/015/datas/gallery.jpg) | ![After](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/466/016/datas/gallery.jpg) | ![UI](https://d112y698adiu2z.cloudfront.net/photos/production/software_photos/003/466/013/datas/gallery.jpg) |
 
 ---
 
